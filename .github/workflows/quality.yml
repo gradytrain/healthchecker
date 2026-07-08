@@ -1,6 +1,10 @@
 name: Quality
 
-on: [push]
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   actionlint:
@@ -17,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Run Trivy in Repo Mode
-        uses: aquasecurity:trivy-action@master
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           ignore-unfixed: true
